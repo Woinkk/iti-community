@@ -19,6 +19,8 @@ import { LocalUserCommands } from './services/platform/local/user.commands.local
 import { HttpUserQueries } from './services/platform/http/user.queries.http';
 import { HttpUserCommands } from './services/platform/http/user.commands.http';
 import { NotificationModule } from '../notification/notification.module';
+import { NzMessageModule } from 'ng-zorro-antd/message';
+
 
 @NgModule({
   declarations: [UserRegistrationComponent, UserWidgetComponent, UserProfileModalComponent],
@@ -44,7 +46,8 @@ import { NotificationModule } from '../notification/notification.module';
     NzModalModule,
     NzBadgeModule,
     NzUploadModule,
-    NotificationModule
+    NotificationModule,
+    NzMessageModule
   ]
 })
 export class UserModule { }

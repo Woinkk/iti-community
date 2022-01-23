@@ -7,7 +7,6 @@ import { DateTime } from 'luxon'
 export class DateFormatPipe implements PipeTransform {
 
   transform(value: number): string {
-    return DateTime.fromMillis(value).toFormat("hh:mm - dd/MM/yyyy");
+    return DateTime.fromMillis(value).toLocaleString(DateTime.DATETIME_MED);
   }
-
 }

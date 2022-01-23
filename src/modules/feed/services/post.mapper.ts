@@ -54,7 +54,7 @@ export class PostMapper {
      // TODO ajouter un attachement de type youtube dans attachements
      attachements.push({
       type: 'youtube',
-      videoId: message
+      videoId: youtubeMatche[2]
     })
     }
 

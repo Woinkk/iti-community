@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { UserQueries } from '../../services/user.queries';
 import { UserService } from '../../services/user.service';
 
 class UserRegistrationFormModel {
@@ -22,7 +25,9 @@ export class UserRegistrationComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private userQueries: UserQueries,
+    private nzMessageService: NzMessageService
   ) { }
 
   ngOnInit(): void {
@@ -34,10 +39,18 @@ export class UserRegistrationComponent implements OnInit {
       return;
     }
 
-    // TODO Enregistrer l'utilisateur via le UserService DONE
-    this.userService.register(this.model.username, this.model.password);
+    let exists = await this.userQueries.exists(this.model.username);
 
-    this.goToLogin();
+    console.log(exists);
+
+    if (exists) {
+      //Notif que l'username existe deja
+      this.nzMessageService.error("Username déjà existant.");
+    } else {
+      this.userService.register(this.model.username, this.model.password);
+      this.goToLogin();
+    }
+
   }
 
   goToLogin() {

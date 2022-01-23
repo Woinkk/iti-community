@@ -29,9 +29,9 @@ export class UserWidgetComponent implements OnInit {
     private userService: UserService,
     private store: UserStore
   ) {
-    this.user$ = store.user$;
-    this.photoUrl$ = store.get(s => s.user && s.user.photoUrl ? s.user.photoUrl : "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Unknown_person.jpg/434px-Unknown_person.jpg");
-    this.hasUnread$ = notificationStore.hasUnread$;
+    this.user$ = this.store.user$;
+    this.photoUrl$ = this.store.get(s => s.user && s.user.photoUrl ? s.user.photoUrl : "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Unknown_person.jpg/434px-Unknown_person.jpg");
+    this.hasUnread$ = this.notificationStore.hasUnread$;
   }
 
   ngOnInit(): void {
